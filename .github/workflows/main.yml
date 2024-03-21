@@ -26,9 +26,9 @@ jobs:
 
       - name: Authenticate with BigCommerce
         run: stencil init --url https://dev-q2.mybigcommerce.com --token c9wtomjyx5sz70fli8qpgopznqv3f9u 
-
-      - name: Build theme
-        run: stencil bundle
+        
+      - name: Authenticate with BigCommerce
+        run: stencil init 
 
       - name: Push changes to BigCommerce
         run: stencil push
