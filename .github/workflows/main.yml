@@ -1,0 +1,30 @@
+name: BigCommerce Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Login to BigCommerce
+        env:
+          BC_STORE_API_URL: ${{ secrets.https://api.bigcommerce.com/stores/avi2v7jnil/v3/ }}  # Replace with your store URL
+          BC_STORE_API_TOKEN: ${{ secrets.re3uvblen4zvzfmw96y0t8xr3vwmpa7 }}  # Replace with your API token
+        run: |
+          npm install @bigcommerce/stencil-cli -g
+          stencil login --username $BC_STORE_API_URL --api-key $BC_STORE_API_TOKEN
+
+      - name: Build Stencil theme
+        run: stencil build
+
+      - name: Push to BigCommerce
+        run: stencil push
+
