@@ -16,7 +16,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18' # or any version that is compatible with your project
+          node-version: '14' # or any version that is compatible with your project
 
       - name: Install stencil CLI
         run: npm install -g @bigcommerce/stencil-cli
@@ -24,11 +24,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Authenticate with BigCommerce
-        run: stencil init --url https://dev-q2.mybigcommerce.com --token c9wtomjyx5sz70fli8qpgopznqv3f9u 
-        
-      - name: Authenticate with BigCommerce
-        run: stencil init 
-
-      - name: Push changes to BigCommerce
-        run: stencil push
+      - name: Initialize Stencil CLI and Push changes to BigCommerce
+        run: |
+          echo -e "\n\n" | stencil init --url https://dev-q2.mybigcommerce.com --token ${{ secrets.BIGCOMMERCE_API_TOKEN }}
+          stencil push
