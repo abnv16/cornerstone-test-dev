@@ -13,11 +13,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '19' # or any version that is compatible with your project
+
       - name: Install stencil CLI
         run: npm install -g @bigcommerce/stencil-cli
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Authenticate with BigCommerce
-        run: stencil init --url ${{ secrets.BIGCOMMERCE_STORE_URL }} --token ${{ secrets.BIGCOMMERCE_API_TOKEN }}
+        run: stencil init --url https://dev-q2.mybigcommerce.com --token ${{ secrets.BIGCOMMERCE_API_TOKEN }}
 
       - name: Build theme
         run: stencil bundle
