@@ -25,7 +25,7 @@ jobs:
         run: npm install
 
       - name: Authenticate with BigCommerce
-        run: stencil init --url https://dev-q2.mybigcommerce.com --token ${{ secrets.BIGCOMMERCE_API_TOKEN }}
+        run: stencil init --url https://dev-q2.mybigcommerce.com --token c9wtomjyx5sz70fli8qpgopznqv3f9u 
 
       - name: Build theme
         run: stencil bundle
