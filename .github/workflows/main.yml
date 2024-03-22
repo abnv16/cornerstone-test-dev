@@ -1,30 +1,30 @@
-name: BigCommerce Deploy
+name: Update BigCommerce on Push to Master
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - master
 
 jobs:
-  deploy:
+  update-bigcommerce:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18' # or any version that is compatible with your project
+
+      - name: Install stencil CLI
+        run: npm install -g @bigcommerce/stencil-cli
 
       - name: Install dependencies
         run: npm install
 
-      - name: Login to BigCommerce
-        env:
-          BC_STORE_API_URL: ${{ secrets.https://api.bigcommerce.com/stores/avi2v7jnil/v3/ }}  # Replace with your store URL
-          BC_STORE_API_TOKEN: ${{ secrets.re3uvblen4zvzfmw96y0t8xr3vwmpa7 }}  # Replace with your API token
+      - name: Initialize Stencil CLI and Push changes to BigCommerce
         run: |
-          npm install @bigcommerce/stencil-cli -g
-          stencil login --username $BC_STORE_API_URL --api-key $BC_STORE_API_TOKEN
-
-      - name: Build Stencil theme
-        run: stencil build
-
-      - name: Push to BigCommerce
-        run: stencil push
-
+          echo -e "\n\n" | stencil init --url https://dev-q2.mybigcommerce.com --token ${{ secrets.BIGCOMMERCE_API_TOKEN }}
+          echo -e "\n" stencil push --delete -a
