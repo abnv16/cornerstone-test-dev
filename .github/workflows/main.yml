@@ -27,4 +27,4 @@ jobs:
       - name: Initialize Stencil CLI and Push changes to BigCommerce
         run: |
           echo -e "\n\n" | stencil init --url https://dev-q2.mybigcommerce.com --token ${{ secrets.BIGCOMMERCE_API_TOKEN }}
-          echo -e "\n" stencil push --delete -a
+          echo -e "\n" | stencil push --delete -a
