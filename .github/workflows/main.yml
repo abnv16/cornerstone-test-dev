@@ -19,7 +19,7 @@ jobs:
           node-version: '18' # or any version that is compatible with your project
 
       - name: Install stencil CLI
-        run: npm install -g @bigcommerce/stencil-cli
+        run: npm install -g @bigcommerce/stencil-cli@3.1.0
 
       - name: Install dependencies
         run: npm install
