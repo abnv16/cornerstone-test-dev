@@ -22,7 +22,9 @@ jobs:
         run: npm install -g @bigcommerce/stencil-cli
 
       - name: Install dependencies
-        run: npm install
+        run: npm install 
+      - name: Install dependancy - 
+        run : npx browserslist@latest --update-db
 
       - name: Initialize Stencil CLI and Push changes to BigCommerce
         run: |
